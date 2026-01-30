@@ -36,7 +36,7 @@
             display: flex;
             width: 300%;
             height: 100%;
-            animation: slide 15s infinite;
+            animation: slide 12s infinite;
         }
 
         .slide {
@@ -62,7 +62,7 @@
             transform: translate(-50%, -50%);
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 20px 30px;
             background: rgba(0,0,0,0.5);
             border-radius: 10px;
         }
@@ -76,12 +76,15 @@
             font-size: 18px;
         }
 
+        /* 4 segundos por slide */
         @keyframes slide {
-            0% { transform: translateX(0); }
-            33% { transform: translateX(0); }
-            38% { transform: translateX(-100%); }
-            66% { transform: translateX(-100%); }
-            71% { transform: translateX(-200%); }
+            0%   { transform: translateX(0); }
+            30%  { transform: translateX(0); }
+
+            35%  { transform: translateX(-100%); }
+            65%  { transform: translateX(-100%); }
+
+            70%  { transform: translateX(-200%); }
             100% { transform: translateX(-200%); }
         }
 
@@ -138,3 +141,4 @@
 
 </body>
 </html>
+
