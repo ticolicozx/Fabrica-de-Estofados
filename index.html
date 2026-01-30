@@ -1,144 +1,284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Fábrica de Estofados</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Fábrica de Estofados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-        body {
-            background: #f5f5f5;
-        }
+    body {
+      background: #f4f4f4;
+      color: #333;
+    }
 
-        header {
-            background: #000;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 20px;
-        }
+    /* HEADER */
+    header {
+      background: #111;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        /* ===== SLIDER ===== */
-        .slider {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            overflow: hidden;
-        }
+    header h1 {
+      font-size: 20px;
+    }
 
-        .slides {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            animation: slide 12s infinite;
-        }
+    /* MENU */
+    .menu {
+      display: none;
+      flex-direction: column;
+      background: #111;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 220px;
+    }
 
-        .slide {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
+    .menu a {
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      border-bottom: 1px solid #222;
+    }
 
-        .slide::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-        }
+    .menu a:hover {
+      background: #222;
+    }
 
-        .slide-content {
-            position: absolute;
-            z-index: 2;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            text-align: center;
-            padding: 20px 30px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 10px;
-        }
+    .hamburger {
+      font-size: 26px;
+      cursor: pointer;
+    }
 
-        .slide-content h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+    /* ===== SLIDER HERO ===== */
+    .hero {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+    }
 
-        .slide-content p {
-            font-size: 18px;
-        }
+    .slides {
+      display: flex;
+      width: 500%;
+      height: 100%;
+      animation: slide 20s infinite;
+    }
 
-        /* 4 segundos por slide */
-        @keyframes slide {
-            0%   { transform: translateX(0); }
-            30%  { transform: translateX(0); }
+    .slide {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
 
-            35%  { transform: translateX(-100%); }
-            65%  { transform: translateX(-100%); }
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
 
-            70%  { transform: translateX(-200%); }
-            100% { transform: translateX(-200%); }
-        }
+    .slide-content {
+      position: relative;
+      z-index: 2;
+    }
 
-        section {
-            padding: 50px;
-            text-align: center;
-            background: #fff;
-        }
+    .slide-content h2 {
+      font-size: 28px;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
-    </style>
+    .slide-content p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(0); }
+
+      25%  { transform: translateX(-100%); }
+      45%  { transform: translateX(-100%); }
+
+      50%  { transform: translateX(-200%); }
+      70%  { transform: translateX(-200%); }
+
+      75%  { transform: translateX(-300%); }
+      95%  { transform: translateX(-300%); }
+
+      100% { transform: translateX(-400%); }
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      padding: 15px;
+    }
+
+    .sobre {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
 </head>
 
 <body>
 
 <header>
-    Fábrica de Estofados
+  <h1>Fábrica de Estofados</h1>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <nav class="menu" id="menu">
+    <a href="#sofa">Sofá</a>
+    <a href="#cama">Cama</a>
+    <a href="#travesseiro">Travesseiro</a>
+    <a href="#cortinas">Cortinas</a>
+    <a href="#coberta">Coberta</a>
+    <a href="#sobre">Quem somos nós</a>
+  </nav>
 </header>
 
 <!-- SLIDER -->
-<div class="slider">
-    <div class="slides">
+<div class="hero">
+  <div class="slides">
 
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1616627980330-3cba6b0f3b18');">
-            <div class="slide-content">
-                <h1>Conforto que transforma seu lar</h1>
-                <p>Qualidade e design em cada detalhe</p>
-            </div>
-        </div>
-
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7');">
-            <div class="slide-content">
-                <h1>Sofás sob medida</h1>
-                <p>Feitos para combinar com seu espaço</p>
-            </div>
-        </div>
-
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1615874959474-d609969a20ed');">
-            <div class="slide-content">
-                <h1>Direto da fábrica</h1>
-                <p>Mais qualidade, melhor preço</p>
-            </div>
-        </div>
-
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7')">
+      <div class="slide-content">
+        <h2>Conforto que transforma seu lar</h2>
+        <p>Somos a empresa número 1 do Brasil 🇧🇷</p>
+      </div>
     </div>
+
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1616627981491-232d1f41c0f6')">
+      <div class="slide-content">
+        <h2>Sofás que impressionam</h2>
+        <p>Design e conforto</p>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615874959474-d609969a20ed')">
+      <div class="slide-content">
+        <h2>Camas de alto padrão</h2>
+        <p>Durma melhor todos os dias</p>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')">
+      <div class="slide-content">
+        <h2>Travesseiros premium</h2>
+        <p>Máximo conforto</p>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1618220179428-22790b461013')">
+      <div class="slide-content">
+        <h2>Cobertas aconchegantes</h2>
+        <p>Perfeitas para seu lar</p>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<section>
-    <h2>Sofás</h2>
-    <p>Em breve nossos modelos incríveis aqui.</p>
-</section>
+<!-- RESTO DO SITE CONTINUA IGUAL -->
+<section id="sofa"><h2>Sofás</h2></section>
+<section id="cama"><h2>Camas</h2></section>
+<section id="travesseiro"><h2>Travesseiros</h2></section>
+<section id="cortinas"><h2>Cortinas</h2></section>
+<section id="coberta"><h2>Cobertas</h2></section>
+<section id="sobre"><h2>Quem somos nós</h2></section>
+
+<footer>
+  © 2026 - Fábrica de Estofados • Somos a empresa número 1 do Brasil
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5541995531904" target="_blank">
+  WhatsApp
+</a>
 
 </body>
 </html>
-
