@@ -3,176 +3,233 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>R.E.F | Paisagismo & Jardinagem Premium</title>
-  
+  <title>R.E.F | Jardinagem e Gramas Sintéticas Premium</title>
+  <meta name="description" content="R.E.F Serviço de Jardinagem: instalação de gramas sintéticas, manutenção e paisagismo." />
+  <meta name="theme-color" content="#07080b" />
+
   <style>
     :root {
-      --bg: #050608;
-      --panel: rgba(15, 18, 27, 0.8);
-      --text: #f0f2f5;
-      --gold: #d4af37;
-      --green: #2ecc71;
-      --glass: rgba(255, 255, 255, 0.03);
-      --line: rgba(255, 255, 255, 0.08);
-      --radius: 20px;
+      --bg: #07080b;
+      --panel: #0c0e14;
+      --text: #e9edf6;
+      --muted: #a4adbd;
+      --gold: #d7b46a;
+      --gold2: #f0d9a3;
+      --green: #67e8a7;
+      --line: rgba(255, 255, 255, .08);
+      --shadow: 0 20px 60px rgba(0, 0, 0, .55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
     }
 
-    /* Animação FadeIn */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: radial-gradient(circle at top right, #1a2a1a, #050608);
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
       color: var(--text);
-      line-height: 1.6;
+      background: radial-gradient(900px 500px at 10% 0%, rgba(215,180,106,.15), transparent 60%), var(--bg);
       overflow-x: hidden;
     }
 
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 20px; }
 
-    /* Header & Nav */
+    /* Estilo Moderno R.E.F */
+    .brand-logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .brand-logo span { color: var(--gold); text-shadow: 0 0 15px rgba(215,180,106,.3); }
+
+    /* Topbar */
     .topbar {
       position: sticky; top: 0; z-index: 100;
       backdrop-filter: blur(15px);
-      background: rgba(5, 6, 8, 0.7);
+      background: rgba(7, 8, 11, .7);
       border-bottom: 1px solid var(--line);
     }
     .topbar .inner {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 20px;
+      max-width: var(--max); margin: 0 auto;
+      padding: 12px 16px;
+      display: flex; align-items: center; justify-content: space-between;
     }
 
-    /* Hero Section Profissional */
+    /* Hero */
     .hero {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-      padding: 60px 0;
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding: 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
       animation: fadeIn 0.8s ease-out;
     }
-    .hero-img {
-      aspect-ratio: 16 / 9;
-      border-radius: var(--radius);
-      overflow: hidden;
+    .hero img { 
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; 
+      border-radius: var(--radius); border: 1px solid var(--line); 
+    }
+
+    /* Cards e Grid */
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line);
+      padding: 20px; border-radius: var(--radius);
+      cursor: pointer; transition: 0.3s;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+    /* Overlay / Modal */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px); z-index: 2000;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .overlay.active { display: flex; }
+    .modal-content {
+      background: var(--panel); width: 100%; max-width: 900px;
+      border-radius: var(--radius2); border: 1px solid var(--gold);
+      padding: 30px; position: relative; max-height: 90vh; overflow-y: auto;
+    }
+
+    /* Catálogo de Gramas dentro do Overlay */
+    .grama-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+    .g-item { 
+      background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; 
       border: 1px solid var(--line);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .hero-img:hover img { transform: scale(1.05); }
+    .g-item img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
 
-    /* Cards de Grama & Portfólio */
-    .grid-portfolio {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px; margin-top: 40px;
-    }
-    .card-item {
-      background: var(--glass);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 15px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    .card-item:hover {
-      border-color: var(--gold);
-      background: rgba(212, 175, 55, 0.05);
-    }
-    .img-box {
-      width: 100%; aspect-ratio: 4 / 3;
-      border-radius: 12px; overflow: hidden; margin-bottom: 15px;
-    }
-    .img-box img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* Botão PWA / Overlay */
-    .pwa-close {
-      position: fixed; top: 20px; right: 20px;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--gold); color: #000;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-weight: bold; z-index: 1000;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      display: none; /* Só aparece via JS se for PWA */
+    /* Botão PWA X */
+    .pwa-x {
+      position: fixed; top: 15px; right: 15px; background: var(--gold);
+      color: #000; width: 40px; height: 40px; border-radius: 50%;
+      display: none; align-items: center; justify-content: center;
+      font-weight: bold; cursor: pointer; z-index: 3000;
     }
 
-    .btn-gold {
-      background: var(--gold); color: #000;
-      padding: 12px 25px; border-radius: 50px;
-      text-decoration: none; font-weight: 700;
-      display: inline-block; transition: 0.3s;
+    .btn-green {
+      background: var(--green); color: #000; padding: 10px 20px;
+      border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
-
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-    }
+    
+    @media (max-width: 800px) { .hero, .grid3, .grama-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <div id="pwaClose" class="pwa-close" onclick="window.close()">X</div>
+  <div id="pwaClose" class="pwa-x" onclick="window.close()">X</div>
 
   <div class="topbar">
     <div class="inner">
-      <div class="brand">
-        <strong style="font-size: 24px; color: var(--gold);">R.E.F</strong>
-        <p style="margin:0; font-size:12px; color: #888;">Jardinagem de Alto Padrão</p>
-      </div>
-      <a href="#contato" class="btn-gold">Orçamento WhatsApp</a>
+      <div class="brand-logo">R<span>.</span>E<span>.</span>F</div>
+      <a href="https://wa.me/5541999999999" class="btn-green">Orçamento WhatsApp</a>
     </div>
   </div>
 
   <div class="wrap">
     <section class="hero">
-      <div class="hero-text">
-        <h1 style="font-size: 48px; line-height: 1.1; margin-bottom: 20px;">
-          Transforme seu espaço em um <span style="color: var(--green);">oásis particular.</span>
-        </h1>
-        <p style="color: #a4adbd; margin-bottom: 30px;">
-          Especialistas em manutenção de gramados, paisagismo residencial e soluções completas para jardins de alto padrão.
-        </p>
-        <a href="#gramas" class="btn-gold">Ver Catálogo de Gramas</a>
+      <div>
+        <h1 style="font-size: 42px; line-height: 1.1;">Especialistas em <span style="color:var(--gold)">Gramados</span> e Paisagismo</h1>
+        <p style="color:var(--muted)">Transformamos áreas externas com a melhor grama sintética do mercado e manutenção profissional de jardins.</p>
+        <a href="#servicos" class="btn-green" style="background:var(--gold)">Ver Catálogo</a>
       </div>
-      <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1558905734-b8301f2215c3?auto=format&fit=crop&q=80&w=800" alt="Jardim Premium">
-      </div>
+      <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1000&auto=format&fit=crop" alt="Jardim Luxo">
     </section>
 
-    <h2 style="text-align: center; margin-top: 80px;">Nossos Serviços Profissionais</h2>
-    <div class="grid-portfolio">
-      <div class="card-item">
-        <div class="img-box">
-          <img src="https://images.unsplash.com/photo-1592150621344-82d45b3a1aa0?auto=format&fit=crop&q=80&w=600" alt="Grama Esmeralda">
-        </div>
-        <h3>Instalação de Grama</h3>
-        <p style="color: #888; font-size: 14px;">Preparação de solo e plantio de gramas premium para áreas residenciais.</p>
+    <h2 id="servicos" style="text-align:center; margin-top:60px;">Nossos Serviços Profissionais</h2>
+    <div class="grid3">
+      <div class="card" onclick="openOverlay('gramas')">
+        <h3>Catálogo de Gramas</h3>
+        <p>Conheça as opções de 12mm a 50mm para lazer ou desporto.</p>
+        <span style="color:var(--gold)">Clique para ver →</span>
       </div>
-      <div class="card-item">
-        <div class="img-box">
-          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=600" alt="Manutenção">
-        </div>
-        <h3>Manutenção Periódica</h3>
-        <p style="color: #888; font-size: 14px;">Corte, adubação e controle de pragas para manter seu jardim impecável.</p>
+      <div class="card" onclick="openOverlay('manutencao')">
+        <h3>Manutenção</h3>
+        <p>Corte, limpeza e adubação periódica para jardins impecáveis.</p>
+        <span style="color:var(--gold)">Clique para ver →</span>
       </div>
-      <div class="card-item">
-        <div class="img-box">
-          <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&q=80&w=600" alt="Paisagismo">
-        </div>
-        <h3>Projetos de Paisagismo</h3>
-        <p style="color: #888; font-size: 14px;">Design personalizado unindo estética e funcionalidade ao ambiente.</p>
+      <div class="card" onclick="openOverlay('paisagismo')">
+        <h3>Projetos</h3>
+        <p>Design de exteriores personalizado para residências e empresas.</p>
+        <span style="color:var(--gold)">Clique para ver →</span>
       </div>
     </div>
   </div>
 
+  <div id="mainOverlay" class="overlay" onclick="closeOverlay()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeOverlay()" style="float:right; cursor:pointer; background:none; border:none; color:white; font-size:20px;">✕</button>
+      <div id="overlayBody"></div>
+    </div>
+  </div>
+
   <script>
-    // Lógica para o Botão X (PWA)
-    const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-    if (isPWA) {
+    // Lógica PWA Button
+    if (window.matchMedia('(display-mode: standalone)').matches) {
       document.getElementById('pwaClose').style.display = 'flex';
     }
 
-    // O restante do seu script de WhatsApp e Lógica de Filtros continua aqui...
+    const content = {
+      gramas: {
+        title: "Catálogo de Gramas Sintéticas",
+        html: `
+          <div class="grama-grid">
+            <div class="g-item">
+              <img src="https://images.unsplash.com/photo-1592150621344-82d45b3a1aa0?q=80&w=400&auto=format&fit=crop">
+              <h4>Grama 12mm Decorativa</h4>
+              <p>Ideal para eventos e decoração interna.</p>
+              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
+            </div>
+            <div class="g-item">
+              <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?q=80&w=400&auto=format&fit=crop">
+              <h4>Grama 30mm Realística</h4>
+              <p>Aspecto natural para jardins e piscinas.</p>
+              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
+            </div>
+            <div class="g-item">
+              <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?q=80&w=400&auto=format&fit=crop">
+              <h4>Grama 50mm Esportiva</h4>
+              <p>Alta resistência para campos de futebol.</p>
+              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
+            </div>
+            <div class="g-item">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=400&auto=format&fit=crop">
+              <h4>Grama Colorida</h4>
+              <p>Para áreas infantis e playgrounds.</p>
+              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
+            </div>
+          </div>`
+      },
+      manutencao: {
+        title: "Serviços de Manutenção",
+        html: "<h3>Limpeza e Roçagem</h3><p>Realizamos a limpeza completa de terrenos, poda de cercas vivas e manutenção de canteiros.</p><a href='#' class='btn-green'>Solicitar Visita</a>"
+      },
+      paisagismo: {
+        title: "Projetos de Paisagismo",
+        html: "<h3>Design Sob Medida</h3><p>Criamos o projeto visual do seu jardim antes da execução.</p><img src='https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600&auto=format&fit=crop' style='width:100%; border-radius:12px; margin-top:15px;'>"
+      }
+    };
+
+    function openOverlay(type) {
+      const modal = document.getElementById('mainOverlay');
+      const body = document.getElementById('overlayBody');
+      body.innerHTML = `<h2>${content[type].title}</h2>${content[type].html}`;
+      modal.classList.add('active');
+    }
+
+    function closeOverlay() {
+      document.getElementById('mainOverlay').classList.remove('active');
+    }
   </script>
 </body>
 </html>
