@@ -3,377 +3,909 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catálogo de Gramas | Modelos & Serviços</title>
+  <title>Fábrica de Estofados | Reformas, Sob Medida e Tapeçaria</title>
+  <meta name="description" content="Fábrica de estofados: reforma, restauração, tapeçaria e estofados sob medida. Orçamento rápido via WhatsApp." />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fábrica de Estofados" />
+  <meta property="og:description" content="Reformas, sob medida e tapeçaria premium. Orçamento via WhatsApp." />
+  <meta property="og:type" content="website" />
+
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#121826;
-      --muted:#9aa4b2;
-      --text:#e8edf3;
-      --accent:#67e8a7;
-      --accent2:#7aa2ff;
-      --border:rgba(255,255,255,.08);
+      --bg:#07080b;
+      --panel:#0c0e14;
+      --panel2:#0f121b;
+      --text:#e9edf6;
+      --muted:#a4adbd;
+      --gold:#d7b46a;
+      --gold2:#f0d9a3;
+      --line:rgba(255,255,255,.08);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,.20), transparent 60%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(103,232,167,.18), transparent 55%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(215,180,106,.15), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(240,217,163,.10), transparent 55%),
+        radial-gradient(700px 500px at 30% 90%, rgba(215,180,106,.08), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
     }
     a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
-    header{
-      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      padding:18px 18px; border:1px solid var(--border); border-radius:18px;
-      background: rgba(18,24,38,.66);
-      backdrop-filter: blur(8px);
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 16px 70px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,8,11,.62);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
     .brand{
-      display:flex; flex-direction:column; gap:6px;
+      display:flex; align-items:center; gap:12px; min-width:220px;
     }
-    .brand h1{margin:0; font-size:22px; letter-spacing:.3px}
-    .brand p{margin:0; color:var(--muted); font-size:14px; max-width:740px; line-height:1.35}
-    .cta{
-      display:flex; flex-direction:column; gap:8px; align-items:flex-end;
+    .logo{
+      width:38px; height:38px; border-radius:14px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(240,217,163,.95), rgba(215,180,106,.25)),
+        linear-gradient(180deg, rgba(215,180,106,.32), rgba(215,180,106,.08));
+      border:1px solid rgba(215,180,106,.35);
+      box-shadow: 0 10px 30px rgba(215,180,106,.12);
+      position:relative;
     }
-    .pill{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px; border-radius:999px; border:1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      font-size:13px; color:var(--muted);
+    .logo:after{
+      content:"";
+      position:absolute; inset:9px;
+      border-radius:12px;
+      border:1px solid rgba(240,217,163,.35);
     }
-    .pill strong{color:var(--text); font-weight:700}
+    .brand b{display:block; letter-spacing:.5px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+    nav{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color:rgba(215,180,106,.22);
+      background: rgba(215,180,106,.06);
+    }
+    .ctaTop{
+      display:flex; gap:10px; align-items:center;
+    }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 12px; border-radius:12px; border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(103,232,167,.18), rgba(103,232,167,.06));
-      text-decoration:none; font-weight:700; font-size:14px;
+      display:inline-flex; align-items:center; gap:10px; justify-content:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(215,180,106,.28);
+      background: linear-gradient(180deg, rgba(215,180,106,.20), rgba(215,180,106,.08));
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:13px;
+      box-shadow: 0 14px 45px rgba(0,0,0,.35);
+      white-space:nowrap;
+    }
+    .btn.secondary{
+      border-color:var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:700;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:16px;
+    /* Hero */
+    .hero{
       margin-top:18px;
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(800px 500px at 20% 10%, rgba(215,180,106,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(400px 300px at 75% 25%, rgba(240,217,163,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .heroInner{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      padding:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .heroInner{grid-template-columns: 1fr; }
+      nav{display:none;}
+      .brand{min-width:auto;}
     }
 
-    .panel{
-      border:1px solid var(--border);
-      border-radius:18px;
-      background: rgba(18,24,38,.60);
-      backdrop-filter: blur(8px);
+    .heroText{
+      padding:8px 6px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid rgba(215,180,106,.22);
+      background: rgba(215,180,106,.06);
+      color:var(--gold2);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .title{
+      margin:14px 0 10px;
+      font-size:34px;
+      line-height:1.05;
+      letter-spacing:.2px;
+    }
+    .title .gold{color:var(--gold2)}
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      max-width:60ch;
+      font-size:14px;
+    }
+    .heroActions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .heroCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.22);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:relative;
       overflow:hidden;
     }
-    .panel .hd{
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+    .heroCard:after{
+      content:"";
+      position:absolute; right:-80px; top:-80px;
+      width:220px; height:220px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(215,180,106,.18), transparent 60%);
+      filter: blur(1px);
     }
-    .panel .hd h2{margin:0;font-size:16px}
-    .panel .bd{padding:14px 16px}
-    .controls{
+    .statRow{
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background: rgba(255,255,255,.03);
+    }
+    .stat b{display:block; font-size:18px; letter-spacing:.3px}
+    .stat span{display:block; color:var(--muted); font-size:12px; margin-top:4px}
+
+    .checklist{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+      position:relative;
+      z-index:1;
+    }
+    .checklist li{
+      display:flex; gap:10px; align-items:flex-start;
+      color:#cfd6e6;
+      font-size:13px;
+      line-height:1.4;
+    }
+    .dot{
+      width:10px; height:10px; margin-top:4px;
+      border-radius:999px;
+      background: radial-gradient(circle at 35% 35%, var(--gold2), var(--gold));
+      box-shadow: 0 0 0 4px rgba(215,180,106,.12);
+      flex:0 0 auto;
+    }
+
+    /* Sections */
+    .section{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(12,14,20,.55);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .sectionHd{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    .sectionHd h2{margin:0; font-size:16px; letter-spacing:.3px}
+    .sectionHd p{margin:0; color:var(--muted); font-size:12px}
+    .sectionBd{padding:16px 18px}
+
+    /* Cards grid */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 920px){ .grid3{grid-template-columns: 1fr} }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.20);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
       gap:10px;
-      margin-top:10px;
+      min-height:160px;
     }
-    @media (min-width: 780px){
-      .grid{grid-template-columns: 1.25fr .75fr}
-      .controls{grid-template-columns: 1.2fr .8fr .8fr}
+    .card h3{margin:0; font-size:14px}
+    .card p{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 9px;
+      border-radius:999px;
+      border:1px solid rgba(215,180,106,.20);
+      background: rgba(215,180,106,.06);
+      color:var(--gold2);
+      font-size:12px;
+      width:fit-content;
     }
-    input, select{
-      width:100%;
+    .card .row{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:auto;
+    }
+    .chip{
+      padding:6px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Portfolio */
+    .portfolioGrid{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 920px){ .portfolioGrid{grid-template-columns: repeat(2, 1fr)} }
+
+    .ph{
+      border:1px solid var(--line);
+      border-radius:16px;
+      min-height:110px;
+      background:
+        linear-gradient(135deg, rgba(215,180,106,.14), rgba(255,255,255,.02)),
+        radial-gradient(180px 120px at 25% 30%, rgba(240,217,163,.12), transparent 60%),
+        rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .ph:hover{
+      transform: translateY(-2px);
+      border-color: rgba(215,180,106,.28);
+    }
+    .ph span{
+      position:absolute; left:10px; bottom:10px;
+      color:#dbe3f4;
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 920px){ .steps{grid-template-columns: 1fr} }
+    .step{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:14px;
+      background: rgba(255,255,255,.03);
+    }
+    .step b{display:flex; align-items:center; gap:10px}
+    .num{
+      width:26px; height:26px; border-radius:10px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background: rgba(215,180,106,.14);
+      border:1px solid rgba(215,180,106,.25);
+      color:var(--gold2);
+      font-weight:900;
+      font-size:13px;
+    }
+    .step p{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.45}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
       padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
       background: rgba(0,0,0,.18);
+    }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      letter-spacing:.2px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.45}
+
+    /* Contact box */
+    .contactBox{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .contactBox{grid-template-columns: 1fr} }
+    .contactCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.18);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .contactCard small{color:var(--muted)}
+    .contactCard .big{
+      font-weight:900; letter-spacing:.3px;
+      font-size:18px;
+    }
+    .form{
+      display:grid; gap:10px;
+    }
+    input, textarea, select{
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
       color:var(--text);
       outline:none;
     }
-    input::placeholder{color:rgba(154,164,178,.8)}
-    .cards{
+    textarea{min-height:110px; resize:vertical}
+    .hint{color:var(--muted); font-size:12px; margin:0}
+
+    /* WhatsApp floating */
+    .waFloat{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:90;
+      display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+    }
+    .waBtn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(215,180,106,.28);
+      background:
+        radial-gradient(18px 18px at 20% 25%, rgba(240,217,163,.45), rgba(215,180,106,.10)),
+        linear-gradient(180deg, rgba(215,180,106,.22), rgba(215,180,106,.08));
+      text-decoration:none;
+      font-weight:900;
+      box-shadow: 0 18px 60px rgba(0,0,0,.60);
+    }
+    .waBtn svg{width:18px;height:18px; fill: var(--gold2)}
+    .waMini{
+      font-size:12px;
+      color:var(--muted);
+      background: rgba(0,0,0,.22);
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.68);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:18px;
+      z-index:120;
+    }
+    .modal.show{display:flex}
+    .modalCard{
+      width:min(920px, 100%);
+      border-radius: 24px;
+      border:1px solid rgba(215,180,106,.25);
+      background:
+        radial-gradient(600px 360px at 20% 10%, rgba(215,180,106,.16), transparent 60%),
+        rgba(12,14,20,.92);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalHd{
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .modalHd b{letter-spacing:.3px}
+    .close{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .modalBd{
+      padding:14px;
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.2fr .8fr;
       gap:12px;
     }
-    @media (min-width: 900px){
-      .cards{grid-template-columns: 1fr 1fr}
+    @media (max-width: 920px){ .modalBd{grid-template-columns:1fr} }
+    .bigPh{
+      min-height:260px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(215,180,106,.14), rgba(255,255,255,.02)),
+        radial-gradient(220px 160px at 35% 30%, rgba(240,217,163,.12), transparent 60%),
+        rgba(0,0,0,.18);
     }
-    .card{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px 14px;
-      background: rgba(0,0,0,.18);
+    .modalInfo{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      background: rgba(0,0,0,.14);
       display:flex; flex-direction:column; gap:10px;
-      min-height: 170px;
     }
-    .topline{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
-    .name{
-      font-weight:800; letter-spacing:.2px; font-size:15px; margin:0;
-    }
-    .meta{
-      display:flex; flex-wrap:wrap; gap:8px;
-      color:var(--muted); font-size:12px;
-    }
-    .tag{
-      padding:5px 8px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-    .desc{margin:0; color:#cdd6e1; font-size:13px; line-height:1.35}
-    .links{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
-    .link{
-      font-size:13px; text-decoration:none; font-weight:800;
-      padding:9px 10px; border-radius:12px; border:1px solid var(--border);
-      background: rgba(122,162,255,.10);
-    }
-    .link.alt{background: rgba(103,232,167,.10)}
-    ul{margin:10px 0 0 18px; color:#cdd6e1; line-height:1.55}
-    .small{color:var(--muted); font-size:12px; margin:0}
-    footer{margin-top:18px; color:var(--muted); font-size:12px}
-    .note{
-      padding:10px 12px; border:1px dashed rgba(255,255,255,.16);
-      border-radius:14px; background: rgba(0,0,0,.14); color:var(--muted);
-      font-size:12px; line-height:1.4;
+    .modalInfo p{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
+    .footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="inner">
       <div class="brand">
-        <h1>Catálogo de Gramas (Sintéticas) — Modelos & Serviços</h1>
-        <p>
-          Catálogo simples para você apresentar modelos, características e links de referência.
-          Use a busca e filtros para achar rapidamente a grama ideal (altura, categoria e uso).
-        </p>
-      </div>
-      <div class="cta">
-        <div class="pill">WhatsApp: <strong>(41) 99999-9999</strong></div>
-        <a class="btn" href="https://wa.me/5541999999999" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
-      </div>
-    </header>
-
-    <div class="grid">
-      <!-- CATÁLOGO -->
-      <section class="panel">
-        <div class="hd">
-          <h2>Modelos de grama</h2>
-          <span class="pill"><span>Itens:</span> <strong id="count">0</strong></span>
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>FÁBRICA DE ESTOFADOS</b>
+          <span>Reforma • Sob medida • Tapeçaria</span>
         </div>
-        <div class="bd">
-          <div class="controls">
-            <input id="q" type="search" placeholder="Buscar: 20mm, esportiva, colorida, UV, anti-fungo..." />
-            <select id="cat">
-              <option value="">Todas as categorias</option>
-              <option value="Decorativa">Decorativa</option>
-              <option value="Esportiva">Esportiva</option>
-              <option value="Colorida">Colorida</option>
-            </select>
-            <select id="height">
-              <option value="">Todas as alturas</option>
-              <option value="12">12mm</option>
-              <option value="20">20mm</option>
-              <option value="30">30mm</option>
-              <option value="40">40mm</option>
-              <option value="50">50mm</option>
-            </select>
-          </div>
+      </div>
 
-          <div style="height:12px"></div>
-          <div class="cards" id="cards"></div>
+      <nav aria-label="Navegação">
+        <a href="#servicos">Serviços</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#processo">Processo</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="ctaTop">
+        <a class="btn secondary" href="#catalogo">Ver modelos</a>
+        <a class="btn" id="topWhats" href="#" target="_blank" rel="noopener">Orçar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="heroInner">
+        <div class="heroText">
+          <div class="kicker">✨ Acabamento premium • Atendimento rápido • Garantia de serviço</div>
+          <h1 class="title">
+            Estofados <span class="gold">sob medida</span> e reformas com padrão de fábrica.
+          </h1>
+          <p class="subtitle">
+            Fazemos reforma e restauração de sofás, poltronas, cadeiras e cabeceiras.
+            Também produzimos estofados sob medida para residências e empresas.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn" id="heroWhats" href="#" target="_blank" rel="noopener">Solicitar orçamento</a>
+            <a class="btn secondary" href="#portfolio">Ver portfólio</a>
+          </div>
 
           <div style="height:14px"></div>
-          <div class="note">
-            <strong>Obs.:</strong> os links abaixo são referências públicas (páginas de produto).
-            Se você quiser, posso adaptar este HTML para usar <em>suas próprias fotos</em> e <em>seus preços</em>.
+          <ul class="checklist">
+            <li><span class="dot"></span><span>Troca de tecido/couro sintético, troca de espuma e reforço de estrutura.</span></li>
+            <li><span class="dot"></span><span>Opções de tecido (suede, linho, veludo etc.) e cores sob consulta.</span></li>
+            <li><span class="dot"></span><span>Retirada e entrega (se você oferecer, deixe ativado no texto).</span></li>
+          </ul>
+        </div>
+
+        <div class="heroCard" aria-label="Resumo rápido">
+          <div class="statRow">
+            <div class="stat">
+              <b>Orçamento</b>
+              <span>rápido no WhatsApp</span>
+            </div>
+            <div class="stat">
+              <b>Acabamento</b>
+              <span>alto padrão</span>
+            </div>
+          </div>
+
+          <div class="statRow">
+            <div class="stat">
+              <b>Reforma</b>
+              <span>sofá / poltrona / cadeira</span>
+            </div>
+            <div class="stat">
+              <b>Sob medida</b>
+              <span>projeto personalizado</span>
+            </div>
+          </div>
+
+          <div class="pill">📍 Atendemos: Curitiba e região (edite aqui)</div>
+          <p class="hint">Edite os textos marcados no HTML para colocar seu endereço, horários e fotos reais.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="section" id="servicos">
+      <div class="sectionHd">
+        <h2>Serviços</h2>
+        <p>O que você oferece (pode ajustar)</p>
+      </div>
+      <div class="sectionBd">
+        <div class="grid3">
+          <div class="card">
+            <div class="pill">Reforma</div>
+            <h3>Reforma completa de estofados</h3>
+            <p>Troca de tecido, espuma, percintas/cintas e reforço estrutural com acabamento alinhado.</p>
+            <div class="row">
+              <span class="chip">Sofás</span><span class="chip">Poltronas</span><span class="chip">Cadeiras</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="pill">Sob medida</div>
+            <h3>Estofados personalizados</h3>
+            <p>Fazemos medidas, definimos estilo e produzimos do zero conforme seu ambiente e necessidade.</p>
+            <div class="row">
+              <span class="chip">Cabeceiras</span><span class="chip">Cantos alemão</span><span class="chip">Bancos</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="pill">Tapeçaria</div>
+            <h3>Troca de revestimento</h3>
+            <p>Renove seu estofado com novas cores, texturas e materiais — com costura e detalhe premium.</p>
+            <div class="row">
+              <span class="chip">Suede</span><span class="chip">Linho</span><span class="chip">Veludo</span>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SERVIÇOS -->
-      <aside class="panel">
-        <div class="hd">
-          <h2>Exemplos de serviços</h2>
-        </div>
-        <div class="bd">
-          <p class="small">Sugestões para você listar no catálogo e vender junto com a grama:</p>
-          <ul>
-            <li><strong>Instalação completa</strong> (medição, recortes e acabamento)</li>
-            <li><strong>Preparação de base</strong> (nivelamento, compactação e drenagem)</li>
-            <li><strong>Colagem / emendas</strong> (fita + cola, alinhamento de fibras)</li>
-            <li><strong>Aplicação em áreas específicas</strong>: jardim, quintal, piscina, sacada, área pet</li>
-            <li><strong>Projetos</strong>: paisagismo, jardim com pedras, áreas decorativas</li>
-            <li><strong>Manutenção</strong>: limpeza, escovação, remoção de folhas e detritos</li>
-            <li><strong>Reparo</strong>: troca de trecho, correção de emendas e bordas</li>
-          </ul>
+    <!-- CATÁLOGO (Modelos / linhas) -->
+    <section class="section" id="catalogo">
+      <div class="sectionHd">
+        <h2>Catálogo</h2>
+        <p>Linhas e opções (você pode trocar por seus modelos reais)</p>
+      </div>
+      <div class="sectionBd">
+        <div class="grid3" id="catalogCards"></div>
+        <p class="hint" style="margin-top:12px">
+          Dica: se você me mandar 8–12 fotos reais (sofá antes/depois), eu coloco aqui em cards com imagens de verdade.
+        </p>
+      </div>
+    </section>
 
-          <div style="height:12px"></div>
-          <p class="small">Quer que eu inclua uma seção “Antes e Depois” (galeria) e um formulário de orçamento?</p>
-          <a class="btn" style="width:100%; margin-top:10px; justify-content:center"
-             href="https://wa.me/5541999999999?text=Olá!%20Quero%20um%20orçamento%20de%20grama%20sintética%20e%20instalação."
-             target="_blank" rel="noopener">
-            Falar no WhatsApp agora
-          </a>
+    <!-- PORTFÓLIO -->
+    <section class="section" id="portfolio">
+      <div class="sectionHd">
+        <h2>Portfólio</h2>
+        <p>Clique para ver detalhes (placeholders prontos)</p>
+      </div>
+      <div class="sectionBd">
+        <div class="portfolioGrid" id="portfolioGrid"></div>
+        <p class="hint" style="margin-top:12px">
+          Hoje estão como placeholders. Depois eu substituo por suas fotos reais (antes/depois) sem perder o estilo.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="section" id="processo">
+      <div class="sectionHd">
+        <h2>Como funciona</h2>
+        <p>Processo simples em 4 passos</p>
+      </div>
+      <div class="sectionBd">
+        <div class="steps">
+          <div class="step">
+            <b><span class="num">1</span> Você manda foto/medidas</b>
+            <p>Envie foto do estofado e a medida aproximada. Diz o que quer mudar (tecido/espuma/estrutura).</p>
+          </div>
+          <div class="step">
+            <b><span class="num">2</span> Orçamento e opções</b>
+            <p>Passamos preço estimado e opções de tecido. Se precisar, agendamos avaliação.</p>
+          </div>
+          <div class="step">
+            <b><span class="num">3</span> Produção na fábrica</b>
+            <p>Executamos reforma/sob medida com acabamento premium e controle de qualidade.</p>
+          </div>
+          <div class="step">
+            <b><span class="num">4</span> Entrega e finalização</b>
+            <p>Entrega/retirada conforme combinado. Orientação básica de limpeza e cuidado do tecido.</p>
+          </div>
         </div>
-      </aside>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="sectionHd">
+        <h2>Dúvidas frequentes</h2>
+        <p>Respostas prontas (edite como quiser)</p>
+      </div>
+      <div class="sectionBd">
+        <details>
+          <summary>Vocês fazem orçamento só com fotos?</summary>
+          <p>Sim. Muitas vezes dá para estimar com foto e medida. Em alguns casos indicamos avaliação presencial para fechar certinho.</p>
+        </details>
+        <details>
+          <summary>Troca de espuma e reforço de estrutura estão inclusos?</summary>
+          <p>Depende do estado do estofado e do pacote. A gente indica o melhor custo-benefício no orçamento.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo demora?</summary>
+          <p>Varia por demanda e complexidade. Você recebe prazo no orçamento (reforma simples costuma ser mais rápida).</p>
+        </details>
+        <details>
+          <summary>Vocês têm catálogo de tecidos?</summary>
+          <p>Sim. Podemos enviar opções por WhatsApp e você escolhe cor e textura. Se preferir, você pode ver presencialmente.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section" id="contato">
+      <div class="sectionHd">
+        <h2>Contato</h2>
+        <p>Orçamento rápido e atendimento</p>
+      </div>
+      <div class="sectionBd">
+        <div class="contactBox">
+          <div class="contactCard">
+            <div class="pill">Atendimento</div>
+            <div class="big" id="phoneText">(41) 99999-9999</div>
+            <small>Horário: Seg–Sáb (09:00–18:00) • Edite aqui</small>
+            <small>Endereço: Curitiba/PR • Edite aqui</small>
+
+            <div style="height:10px"></div>
+
+            <a class="btn" id="contactWhats" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+            <a class="btn secondary" href="#inicio">Voltar ao topo</a>
+          </div>
+
+          <div class="contactCard">
+            <div class="pill">Pré-orçamento</div>
+            <p class="hint" style="margin-top:0">
+              Preencha e clique em “Enviar no WhatsApp” — ele monta a mensagem automática.
+            </p>
+
+            <form class="form" id="quoteForm">
+              <select id="tipo">
+                <option value="Sofá">Sofá</option>
+                <option value="Poltrona">Poltrona</option>
+                <option value="Cadeira">Cadeira</option>
+                <option value="Cabeceira">Cabeceira</option>
+                <option value="Sob medida">Sob medida</option>
+              </select>
+              <input id="medidas" placeholder="Medidas (ex.: 2,20m x 0,90m)" />
+              <input id="material" placeholder="Material desejado (ex.: suede, linho, courino...)" />
+              <textarea id="obs" placeholder="Observações (trocar espuma? estrutura? cor? retirada/entrega?)"></textarea>
+              <button type="submit" class="btn" style="cursor:pointer">Enviar no WhatsApp</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> • Fábrica de Estofados — Site catálogo (GitHub Pages)
     </div>
+  </div>
 
-    <footer>
-      <div>© <span id="year"></span> — Catálogo demonstrativo. Ajuste os textos, fotos e preços conforme sua necessidade.</div>
-    </footer>
+  <!-- WhatsApp floating -->
+  <div class="waFloat" aria-label="Contato rápido">
+    <div class="waMini">Orçamento em 1 minuto</div>
+    <a class="waBtn" id="waFloat" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.47c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.2-1.35-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.63 1.12 2.81.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.6-.65 1.83-1.27.23-.62.23-1.15.16-1.27-.07-.12-.25-.2-.52-.34zM16.02 27c-1.86 0-3.67-.5-5.26-1.45l-3.68 1.16 1.2-3.58A10.9 10.9 0 0 1 5.1 16.02C5.1 9.94 9.95 5.1 16.02 5.1c2.94 0 5.7 1.15 7.78 3.23A10.9 10.9 0 0 1 27 16.02C27 22.09 22.1 27 16.02 27zm9.4-20.8A13.2 13.2 0 0 0 16.02 2.8C8.68 2.8 2.8 8.67 2.8 16.02c0 2.33.6 4.6 1.74 6.6L2.8 29.2l6.74-2.15a13.15 13.15 0 0 0 6.48 1.7c7.34 0 13.22-5.88 13.22-13.23 0-3.53-1.38-6.84-3.82-9.32z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhe do portfólio">
+    <div class="modalCard">
+      <div class="modalHd">
+        <b id="modalTitle">Projeto</b>
+        <button class="close" id="closeModal">Fechar</button>
+      </div>
+      <div class="modalBd">
+        <div class="bigPh" id="modalImage" aria-hidden="true"></div>
+        <div class="modalInfo">
+          <p id="modalDesc">Descrição do serviço: troca de tecido e espuma, reforço estrutural e acabamento premium.</p>
+          <a class="btn" id="modalWhats" href="#" target="_blank" rel="noopener">Quero um igual — Orçar</a>
+          <p class="hint">Quando você mandar suas fotos reais, eu coloco aqui como imagem de verdade.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const models = [
-      {
-        name: "Grama Sintética Decorativa 12mm (m²)",
-        category: "Decorativa",
-        height: 12,
-        use: "Jardim de inverno, paredes internas, varandas, decoração",
-        features: ["Proteção UV", "Anti-fungo", "Baixa manutenção"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-12mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
-      },
-      {
-        name: "Grama Sintética Decorativa 20mm (m²)",
-        category: "Decorativa",
-        height: 20,
-        use: "Áreas internas/externas, lazer, varanda, área pet",
-        features: ["Proteção UV", "Anti-fungo", "Drenagem"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-20mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
-      },
-      {
-        name: "Grama Sintética Decorativa 30mm (m²)",
-        category: "Decorativa",
-        height: 30,
-        use: "Jardins externos, quintal, piscina, áreas de circulação",
-        features: ["Proteção UV", "Anti-fungo", "Conforto"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-30mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
-      },
-      {
-        name: "Grama Sintética Decorativa 40mm (m²)",
-        category: "Decorativa",
-        height: 40,
-        use: "Visual mais alto/natural, áreas externas, lazer",
-        features: ["Proteção UV", "Anti-fungo", "Visual cheio"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-40mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
-      },
-      {
-        name: "Grama Sintética Esportiva 50mm 6000 Dtex (m²)",
-        category: "Esportiva",
-        height: 50,
-        use: "Campos/quadras, alta resistência e tráfego intenso",
-        features: ["Resistente", "Alta durabilidade"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-esportiva-50mm-por-metro-quadrado-6000-dtex-fibrilada/"
-      },
-      {
-        name: "Grama Sintética Esportiva 50mm 8000 Dtex (m²)",
-        category: "Esportiva",
-        height: 50,
-        use: "Campos/quadras, performance e resistência superior",
-        features: ["Resistente", "Alta durabilidade"],
-        url: "https://supergramas.com.br/produtos/grama-sintetica-esportiva-50mm-por-metro-quadrado-8000-dtex-fibrilada/"
-      },
-      {
-        name: "Grama Sintética Colorida 20mm Amarela",
-        category: "Colorida",
-        height: 20,
-        use: "Eventos, playground, decoração criativa",
-        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
-        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-amarela/"
-      },
-      {
-        name: "Grama Sintética Colorida 20mm Azul",
-        category: "Colorida",
-        height: 20,
-        use: "Eventos, áreas temáticas, decoração",
-        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
-        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-azul/"
-      },
-      {
-        name: "Grama Sintética Colorida 20mm Branca",
-        category: "Colorida",
-        height: 20,
-        use: "Eventos, vitrines, projetos especiais",
-        features: ["Proteção UV", "Anti-fungo", "Destaque visual"],
-        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-branca/"
-      },
-      {
-        name: "Grama Sintética Colorida 20mm Vermelha",
-        category: "Colorida",
-        height: 20,
-        use: "Eventos, decoração, áreas temáticas",
-        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
-        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-vermelho/"
-      }
+    // ========= CONFIG BÁSICA =========
+    const WHATS_NUMBER = "5541999999999"; // troque aqui (DDD + número), sem espaços
+    const WHATS_LABEL  = "(41) 99999-9999"; // texto exibido
+    const COMPANY_NAME = "Fábrica de Estofados";
+    const CITY = "Curitiba/PR"; // opcional
+
+    // ========= CATÁLOGO (edite os itens) =========
+    const catalog = [
+      { title:"Sofá Retrátil/Reclinável", tag:"Linha Conforto", desc:"Reforma completa, troca de espuma e tecido. Opções de suede/linho/veludo.", chips:["Reforma","Espuma","Tecido"] },
+      { title:"Poltronas & Cadeiras", tag:"Tapeçaria", desc:"Troca de revestimento, reforço de estrutura e ajuste de costura/detalhes.", chips:["Cadeiras","Poltronas","Comercial"] },
+      { title:"Cabeceiras Sob Medida", tag:"Personalizado", desc:"Cabeceira sob medida com acabamento premium e opções de capitonê.", chips:["Sob medida","Capitonê","Quarto"] },
+      { title:"Bancos & Cantos Alemão", tag:"Projetos", desc:"Soluções sob medida para cozinha/ambientes, com materiais resistentes.", chips:["Sob medida","Residencial","Empresa"] },
+      { title:"Restauração Premium", tag:"Alto padrão", desc:"Restauração estética e estrutural para peças especiais.", chips:["Restauro","Detalhe","Premium"] },
+      { title:"Troca de Espuma", tag:"Custo-benefício", desc:"Renova conforto e durabilidade do estofado com opções de densidade.", chips:["Espuma","Conforto","Durável"] },
     ];
 
-    const elCards = document.getElementById("cards");
-    const elQ = document.getElementById("q");
-    const elCat = document.getElementById("cat");
-    const elHeight = document.getElementById("height");
-    const elCount = document.getElementById("count");
+    // ========= PORTFÓLIO (placeholders) =========
+    const portfolio = [
+      { title:"Sofá 3 lugares — Reforma completa", desc:"Troca de tecido + espuma + reforço estrutural." },
+      { title:"Poltrona — Tapeçaria premium", desc:"Revestimento novo e acabamento alinhado." },
+      { title:"Cabeceira — Sob medida", desc:"Projeto personalizado para quarto." },
+      { title:"Cadeira — Reforma", desc:"Troca de tecido e reforço." },
+      { title:"Banco sob medida", desc:"Medida exata para ambiente." },
+      { title:"Sofá — Restauração", desc:"Ajustes e detalhamento premium." },
+      { title:"Poltrona — Reforma", desc:"Espuma e tecido renovados." },
+      { title:"Cabeceira — Capitonê", desc:"Costura e acabamento alto padrão." },
+      { title:"Canto alemão", desc:"Projeto completo sob medida." },
+      { title:"Sofá retrátil", desc:"Reforma e revisão de mecanismos (se aplicável)." },
+      { title:"Cadeira de jantar", desc:"Renovação em lote (empresas e casas)." },
+      { title:"Sofá — Troca de espuma", desc:"Conforto novo sem trocar estrutura." },
+    ];
 
-    function cardTemplate(m){
-      const tags = [
-        `<span class="tag">${m.category}</span>`,
-        `<span class="tag">${m.height}mm</span>`,
-        ...m.features.slice(0,3).map(f => `<span class="tag">${f}</span>`)
-      ].join("");
+    // ========= HELPERS =========
+    const el = (id) => document.getElementById(id);
+    const waLink = (text) => {
+      const msg = encodeURIComponent(text);
+      return `https://wa.me/${WHATS_NUMBER}?text=${msg}`;
+    };
 
-      return `
-        <article class="card" data-cat="${m.category}" data-height="${m.height}" data-text="${(m.name+' '+m.use+' '+m.features.join(' ')).toLowerCase()}">
-          <div class="topline">
-            <p class="name">${m.name}</p>
-            <span class="tag" style="border-color:rgba(103,232,167,.35); color:#bff7de">Disponível</span>
-          </div>
-          <div class="meta">${tags}</div>
-          <p class="desc"><strong>Indicação:</strong> ${m.use}</p>
-          <div class="links">
-            <a class="link" href="${m.url}" target="_blank" rel="noopener">Ver link do modelo</a>
-            <a class="link alt" href="https://wa.me/5541999999999?text=Olá!%20Quero%20orçamento%20da%20${encodeURIComponent(m.name)}%20(${m.height}mm)%20e%20instalação."
-               target="_blank" rel="noopener">Orçar no WhatsApp</a>
-          </div>
-        </article>
-      `;
+    // ========= INJETAR TELEFONE / LINKS =========
+    el("phoneText").textContent = WHATS_LABEL;
+    el("year").textContent = new Date().getFullYear();
+
+    const baseMsg = `Olá! Quero um orçamento com a ${COMPANY_NAME}. (${CITY})`;
+    const topWhats = el("topWhats");
+    const heroWhats = el("heroWhats");
+    const contactWhats = el("contactWhats");
+    const waFloat = el("waFloat");
+
+    [topWhats, heroWhats, contactWhats, waFloat].forEach(a => a.href = waLink(baseMsg));
+
+    // ========= RENDER CATÁLOGO =========
+    const catalogWrap = el("catalogCards");
+    catalogWrap.innerHTML = catalog.map(item => `
+      <div class="card">
+        <div class="pill">${item.tag}</div>
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <div class="row">
+          ${item.chips.map(c => `<span class="chip">${c}</span>`).join("")}
+        </div>
+      </div>
+    `).join("");
+
+    // ========= RENDER PORTFÓLIO =========
+    const pGrid = el("portfolioGrid");
+    pGrid.innerHTML = portfolio.map((p, i) => `
+      <div class="ph" data-i="${i}" title="Clique para ver">
+        <span>${p.title}</span>
+      </div>
+    `).join("");
+
+    // ========= MODAL =========
+    const modal = el("modal");
+    const closeModal = el("closeModal");
+    const modalTitle = el("modalTitle");
+    const modalDesc = el("modalDesc");
+    const modalWhats = el("modalWhats");
+
+    function openModal(item){
+      modalTitle.textContent = item.title;
+      modalDesc.textContent = item.desc;
+      modalWhats.href = waLink(`Olá! Vi no seu site: "${item.title}". Quero um orçamento. Posso enviar fotos e medidas?`);
+      modal.classList.add("show");
     }
+    function hideModal(){ modal.classList.remove("show"); }
 
-    function render(){
-      elCards.innerHTML = models.map(cardTemplate).join("");
-      applyFilters();
-    }
+    pGrid.addEventListener("click", (e) => {
+      const ph = e.target.closest(".ph");
+      if(!ph) return;
+      const idx = Number(ph.dataset.i);
+      openModal(portfolio[idx]);
+    });
+    closeModal.addEventListener("click", hideModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) hideModal(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") hideModal(); });
 
-    function applyFilters(){
-      const q = (elQ.value || "").trim().toLowerCase();
-      const cat = elCat.value;
-      const h = elHeight.value;
+    // ========= FORM -> WHATSAPP =========
+    el("quoteForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const tipo = el("tipo").value;
+      const medidas = el("medidas").value.trim();
+      const material = el("material").value.trim();
+      const obs = el("obs").value.trim();
 
-      const items = Array.from(elCards.querySelectorAll(".card"));
-      let shown = 0;
+      const msg =
+`Olá! Quero um orçamento.
+• Tipo: ${tipo}
+• Medidas: ${medidas || "Não informado"}
+• Material desejado: ${material || "Não informado"}
+• Observações: ${obs || "Não informado"}
 
-      items.forEach(card => {
-        const okQ = !q || card.dataset.text.includes(q);
-        const okC = !cat || card.dataset.cat === cat;
-        const okH = !h || card.dataset.height === h;
-        const ok = okQ && okC && okH;
-        card.style.display = ok ? "" : "none";
-        if(ok) shown++;
-      });
+Posso enviar fotos do estofado?`;
 
-      elCount.textContent = shown;
-    }
-
-    elQ.addEventListener("input", applyFilters);
-    elCat.addEventListener("change", applyFilters);
-    elHeight.addEventListener("change", applyFilters);
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    render();
+      window.open(waLink(msg), "_blank");
+    });
   </script>
 </body>
 </html>
-
