@@ -3,24 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>R.E.F | Jardinagem e Gramas Sintéticas Premium</title>
-  <meta name="description" content="R.E.F Serviço de Jardinagem: instalação de gramas sintéticas, manutenção e paisagismo." />
-  <meta name="theme-color" content="#07080b" />
-
+  <title>R.E.F | Gramas & Paisagismo Vibrante</title>
+  
   <style>
     :root {
-      --bg: #07080b;
-      --panel: #0c0e14;
-      --text: #e9edf6;
-      --muted: #a4adbd;
-      --gold: #d7b46a;
-      --gold2: #f0d9a3;
-      --green: #67e8a7;
-      --line: rgba(255, 255, 255, .08);
-      --shadow: 0 20px 60px rgba(0, 0, 0, .55);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
+      /* Cores mais vivas e modernas */
+      --bg: #050a06; /* Verde escuro profundo */
+      --panel: #0d1a11;
+      --accent: #d4af37; /* Ouro mais saturado */
+      --vibrant-green: #2ecc71; /* Verde vivo */
+      --text: #ffffff;
+      --muted: #a4c4b0;
+      --glass: rgba(46, 204, 113, 0.05);
+      --line: rgba(46, 204, 113, 0.15);
+      --radius: 20px;
     }
 
     @keyframes fadeIn {
@@ -28,202 +24,206 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: radial-gradient(circle at top right, #102e1a, #050a06);
       color: var(--text);
-      background: radial-gradient(900px 500px at 10% 0%, rgba(215,180,106,.15), transparent 60%), var(--bg);
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 20px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-    /* Estilo Moderno R.E.F */
+    /* LOGO R.E.F VIBRANTE */
     .brand-logo {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 900;
+      color: var(--text);
       letter-spacing: -1px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
-    .brand-logo span { color: var(--gold); text-shadow: 0 0 15px rgba(215,180,106,.3); }
+    .brand-logo span {
+      color: var(--vibrant-green);
+      text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+    }
 
-    /* Topbar */
     .topbar {
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(15px);
-      background: rgba(7, 8, 11, .7);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar .inner {
-      max-width: var(--max); margin: 0 auto;
-      padding: 12px 16px;
-      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(5, 10, 6, 0.8);
+      border-bottom: 2px solid var(--vibrant-green);
+      padding: 15px 0;
     }
 
-    /* Hero */
+    /* HERO SECTION */
     .hero {
-      margin-top: 20px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+      padding: 60px 0; animation: fadeIn 0.8s ease-out;
+    }
+    .hero-img {
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 2px solid var(--vibrant-green);
+      box-shadow: 0 0 30px rgba(46, 204, 113, 0.2);
+    }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* GRID DE SERVIÇOS (PORTFÓLIO) */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px; margin-top: 40px;
+    }
+    .service-card {
+      background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      padding: 40px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-      animation: fadeIn 0.8s ease-out;
+      border-radius: var(--radius);
+      padding: 20px;
+      cursor: pointer;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .hero img { 
-      width: 100%; aspect-ratio: 16/9; object-fit: cover; 
-      border-radius: var(--radius); border: 1px solid var(--line); 
+    .service-card:hover {
+      border-color: var(--vibrant-green);
+      transform: scale(1.03);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     }
+    .img-box {
+      width: 100%; aspect-ratio: 4 / 3;
+      border-radius: 12px; overflow: hidden; margin-bottom: 15px;
+    }
+    .img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Cards e Grid */
-    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; }
-    .card {
-      background: var(--panel); border: 1px solid var(--line);
-      padding: 20px; border-radius: var(--radius);
-      cursor: pointer; transition: 0.3s;
-    }
-    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-
-    /* Overlay / Modal */
+    /* OVERLAY */
     .overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
       backdrop-filter: blur(10px); z-index: 2000;
       display: none; align-items: center; justify-content: center; padding: 20px;
     }
-    .overlay.active { display: flex; }
+    .overlay.active { display: flex; animation: fadeIn 0.3s ease; }
     .modal-content {
-      background: var(--panel); width: 100%; max-width: 900px;
-      border-radius: var(--radius2); border: 1px solid var(--gold);
-      padding: 30px; position: relative; max-height: 90vh; overflow-y: auto;
+      background: var(--panel); width: 100%; max-width: 800px;
+      border-radius: var(--radius); border: 2px solid var(--vibrant-green);
+      padding: 40px; position: relative; max-height: 90vh; overflow-y: auto;
     }
 
-    /* Catálogo de Gramas dentro do Overlay */
-    .grama-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-    .g-item { 
-      background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; 
-      border: 1px solid var(--line);
-    }
-    .g-item img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
-
-    /* Botão PWA X */
-    .pwa-x {
-      position: fixed; top: 15px; right: 15px; background: var(--gold);
-      color: #000; width: 40px; height: 40px; border-radius: 50%;
+    /* PWA X BUTTON */
+    .pwa-close {
+      position: fixed; top: 20px; right: 20px;
+      width: 45px; height: 45px; border-radius: 50%;
+      background: var(--vibrant-green); color: #000;
       display: none; align-items: center; justify-content: center;
       font-weight: bold; cursor: pointer; z-index: 3000;
     }
 
-    .btn-green {
-      background: var(--green); color: #000; padding: 10px 20px;
-      border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block;
+    .btn-cta {
+      background: var(--vibrant-green); color: #000;
+      padding: 12px 25px; border-radius: 50px;
+      text-decoration: none; font-weight: 800;
+      display: inline-block; text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    
-    @media (max-width: 800px) { .hero, .grid3, .grama-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <div id="pwaClose" class="pwa-x" onclick="window.close()">X</div>
+  <div id="pwaClose" class="pwa-close" onclick="window.close()">X</div>
 
   <div class="topbar">
-    <div class="inner">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
       <div class="brand-logo">R<span>.</span>E<span>.</span>F</div>
-      <a href="https://wa.me/5541999999999" class="btn-green">Orçamento WhatsApp</a>
+      <a href="https://wa.me/5500000000000" class="btn-cta">WhatsApp</a>
     </div>
   </div>
 
   <div class="wrap">
     <section class="hero">
-      <div>
-        <h1 style="font-size: 42px; line-height: 1.1;">Especialistas em <span style="color:var(--gold)">Gramados</span> e Paisagismo</h1>
-        <p style="color:var(--muted)">Transformamos áreas externas com a melhor grama sintética do mercado e manutenção profissional de jardins.</p>
-        <a href="#servicos" class="btn-green" style="background:var(--gold)">Ver Catálogo</a>
+      <div class="hero-text">
+        <h1 style="font-size: 50px; line-height: 1; margin-bottom: 20px;">
+          Cores que <span style="color:var(--vibrant-green)">Crescem</span>, Qualidade que <span style="color:var(--accent)">Permanece</span>.
+        </h1>
+        <p style="color:var(--muted); font-size:18px;">Instalação de gramas sintéticas de alta performance e paisagismo profissional com cores vibrantes o ano todo.</p>
+        <a href="#portfolio" class="btn-cta">Ver Portfólio de Gramas</a>
       </div>
-      <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=1000&auto=format&fit=crop" alt="Jardim Luxo">
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?q=80&w=1000&auto=format&fit=crop" alt="Grama Vibrante">
+      </div>
     </section>
 
-    <h2 id="servicos" style="text-align:center; margin-top:60px;">Nossos Serviços Profissionais</h2>
-    <div class="grid3">
-      <div class="card" onclick="openOverlay('gramas')">
-        <h3>Catálogo de Gramas</h3>
-        <p>Conheça as opções de 12mm a 50mm para lazer ou desporto.</p>
-        <span style="color:var(--gold)">Clique para ver →</span>
+    <h2 id="portfolio" style="text-align: center; margin-top: 80px; font-size: 32px;">Portfólio de Instalação</h2>
+    
+    <div class="services-grid">
+      <div class="service-card" onclick="openOverlay('decorativa')">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1592150621344-82d45b3a1aa0?q=80&w=600&auto=format&fit=crop" alt="Grama Decorativa">
+        </div>
+        <h3>Grama Decorativa Soft</h3>
+        <p style="color:var(--muted)">Perfeita para playgrounds e áreas internas.</p>
+        <b style="color:var(--vibrant-green)">Ver Detalhes →</b>
       </div>
-      <div class="card" onclick="openOverlay('manutencao')">
-        <h3>Manutenção</h3>
-        <p>Corte, limpeza e adubação periódica para jardins impecáveis.</p>
-        <span style="color:var(--gold)">Clique para ver →</span>
+
+      <div class="service-card" onclick="openOverlay('premium')">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=600&auto=format&fit=crop" alt="Paisagismo Luxo">
+        </div>
+        <h3>Premium 30mm (Realística)</h3>
+        <p style="color:var(--muted)">Aparência idêntica à grama natural, com zero manutenção.</p>
+        <b style="color:var(--vibrant-green)">Ver Detalhes →</b>
       </div>
-      <div class="card" onclick="openOverlay('paisagismo')">
-        <h3>Projetos</h3>
-        <p>Design de exteriores personalizado para residências e empresas.</p>
-        <span style="color:var(--gold)">Clique para ver →</span>
+
+      <div class="service-card" onclick="openOverlay('esportiva')">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?q=80&w=600&auto=format&fit=crop" alt="Campo Society">
+        </div>
+        <h3>Esportiva (Futebol/Society)</h3>
+        <p style="color:var(--muted)">Alta durabilidade e amortecimento de impacto profissional.</p>
+        <b style="color:var(--vibrant-green)">Ver Detalhes →</b>
       </div>
     </div>
   </div>
 
   <div id="mainOverlay" class="overlay" onclick="closeOverlay()">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <button onclick="closeOverlay()" style="float:right; cursor:pointer; background:none; border:none; color:white; font-size:20px;">✕</button>
       <div id="overlayBody"></div>
+      <button onclick="closeOverlay()" class="btn-cta" style="margin-top:20px; width:100%;">Fechar</button>
     </div>
   </div>
 
   <script>
-    // Lógica PWA Button
+    // Detecção PWA para o Botão X
     if (window.matchMedia('(display-mode: standalone)').matches) {
       document.getElementById('pwaClose').style.display = 'flex';
     }
 
-    const content = {
-      gramas: {
-        title: "Catálogo de Gramas Sintéticas",
+    const info = {
+      decorativa: {
+        title: "Grama Sintética Decorativa",
         html: `
-          <div class="grama-grid">
-            <div class="g-item">
-              <img src="https://images.unsplash.com/photo-1592150621344-82d45b3a1aa0?q=80&w=400&auto=format&fit=crop">
-              <h4>Grama 12mm Decorativa</h4>
-              <p>Ideal para eventos e decoração interna.</p>
-              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
-            </div>
-            <div class="g-item">
-              <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?q=80&w=400&auto=format&fit=crop">
-              <h4>Grama 30mm Realística</h4>
-              <p>Aspecto natural para jardins e piscinas.</p>
-              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
-            </div>
-            <div class="g-item">
-              <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?q=80&w=400&auto=format&fit=crop">
-              <h4>Grama 50mm Esportiva</h4>
-              <p>Alta resistência para campos de futebol.</p>
-              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
-            </div>
-            <div class="g-item">
-              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=400&auto=format&fit=crop">
-              <h4>Grama Colorida</h4>
-              <p>Para áreas infantis e playgrounds.</p>
-              <a href="https://wa.me/5541999999999" class="btn-green">Orçar</a>
-            </div>
-          </div>`
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" style="width:100%; border-radius:15px; margin-bottom:20px;">
+          <p>Nossa instalação decorativa foca no conforto térmico e toque macio. Ideal para quartos infantis, escritórios modernos e áreas de lazer.</p>
+          <ul><li>Proteção Anti-Bacteriana</li><li>Fácil Limpeza</li><li>Cores Vibrantes</li></ul>
+        `
       },
-      manutencao: {
-        title: "Serviços de Manutenção",
-        html: "<h3>Limpeza e Roçagem</h3><p>Realizamos a limpeza completa de terrenos, poda de cercas vivas e manutenção de canteiros.</p><a href='#' class='btn-green'>Solicitar Visita</a>"
+      premium: {
+        title: "Grama Premium Paisagismo",
+        html: `
+          <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=800&auto=format&fit=crop" style="width:100%; border-radius:15px; margin-bottom:20px;">
+          <p>Indicada para quem busca o luxo do verde sem o custo de água e jardineiros semanais. Utilizamos tecnologia de fibra em 'V' que mantém a grama sempre em pé.</p>
+        `
       },
-      paisagismo: {
-        title: "Projetos de Paisagismo",
-        html: "<h3>Design Sob Medida</h3><p>Criamos o projeto visual do seu jardim antes da execução.</p><img src='https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600&auto=format&fit=crop' style='width:100%; border-radius:12px; margin-top:15px;'>"
+      esportiva: {
+        title: "Grama Esportiva Profissional",
+        html: `
+          <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?q=80&w=800&auto=format&fit=crop" style="width:100%; border-radius:15px; margin-bottom:20px;">
+          <p>Instalação técnica com base drenante e areia de sílica/borracha granulada. Resistência extrema para jogos intensos diários.</p>
+        `
       }
     };
 
-    function openOverlay(type) {
+    function openOverlay(key) {
       const modal = document.getElementById('mainOverlay');
       const body = document.getElementById('overlayBody');
-      body.innerHTML = `<h2>${content[type].title}</h2>${content[type].html}`;
+      body.innerHTML = `<h2>${info[key].title}</h2>${info[key].html}`;
       modal.classList.add('active');
     }
 
