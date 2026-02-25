@@ -1,279 +1,379 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Fábrica de Estofados</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo de Gramas | Modelos & Serviços</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#121826;
+      --muted:#9aa4b2;
+      --text:#e8edf3;
+      --accent:#67e8a7;
+      --accent2:#7aa2ff;
+      --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,.20), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(103,232,167,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px}
+    header{
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      padding:18px 18px; border:1px solid var(--border); border-radius:18px;
+      background: rgba(18,24,38,.66);
+      backdrop-filter: blur(8px);
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .brand h1{margin:0; font-size:22px; letter-spacing:.3px}
+    .brand p{margin:0; color:var(--muted); font-size:14px; max-width:740px; line-height:1.35}
+    .cta{
+      display:flex; flex-direction:column; gap:8px; align-items:flex-end;
+    }
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 12px; border-radius:999px; border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      font-size:13px; color:var(--muted);
+    }
+    .pill strong{color:var(--text); font-weight:700}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px; border-radius:12px; border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(103,232,167,.18), rgba(103,232,167,.06));
+      text-decoration:none; font-weight:700; font-size:14px;
+    }
 
-<style>
-/* ================= RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
-}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      margin-top:18px;
+    }
 
-body {
-  background: #f4f4f4;
-  color: #222;
-  overflow-x: hidden;
-}
-
-/* ================= HEADER & BUSCA ================= */
-header {
-  background: #111;
-  padding: 15px 20px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #c5a059; /* Dourado moderno */
-}
-
-header h1 {
-  color: #c5a059;
-  font-size: 1.4em;
-  letter-spacing: 1px;
-}
-
-.search-container {
-  flex-grow: 1;
-  margin: 0 20px;
-  max-width: 400px;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  background: #222;
-  color: #fff;
-}
-
-/* ================= MENU HAMBÚRGUER & OVERLAY ================= */
-.menu-icon {
-  cursor: pointer;
-  font-size: 24px;
-  color: #c5a059;
-  z-index: 1100;
-}
-
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1050;
-  top: 0;
-  right: 0;
-  background-color: rgba(0,0,0, 0.95);
-  overflow-x: hidden;
-  transition: 0.5s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.overlay a {
-  padding: 15px;
-  text-decoration: none;
-  font-size: 1.8em;
-  color: #c5a059;
-  display: block;
-  transition: 0.3s;
-}
-
-.overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 40px;
-}
-
-/* ================= ESPAÇAMENTO FIXO ================= */
-.spacer {
-  height: 80px;
-}
-
-/* ================= SLIDER (16s total = 4s cada) ================= */
-.slider {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  background: #000;
-  position: relative;
-}
-
-.slides {
-  display: flex;
-  width: 400%;
-  height: 100%;
-  animation: slideAnimation 16s infinite;
-}
-
-.slide {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  flex-shrink: 0;
-}
-
-.slide1 { background-image: url("https://images.unsplash.com/photo-1615874959474-d609969a20ed"); }
-.slide2 { background-image: url("https://images.unsplash.com/photo-1586023492125-27b2c045efd7"); }
-.slide3 { background-image: url("https://images.unsplash.com/photo-1582582621959-48d27397dc69"); }
-.slide4 { background-image: url("https://images.unsplash.com/photo-1598300053651-28b35f36c7ec"); }
-
-@keyframes slideAnimation {
-  0%, 20%   { transform: translateX(0); }
-  25%, 45%  { transform: translateX(-100%); }
-  50%, 70%  { transform: translateX(-200%); }
-  75%, 95%  { transform: translateX(-300%); }
-  100%      { transform: translateX(0); }
-}
-
-/* ================= PRODUTOS ================= */
-section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 50px 20px;
-}
-
-.produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.produto {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
-.produto:hover {
-  transform: translateY(-5px);
-}
-
-.produto img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.produto h3 { padding: 15px; text-align: center; color: #111; }
-.produto p { padding: 0 15px 20px; text-align: center; color: #666; font-size: 0.9em; }
-
-/* ================= WHATSAPP ================= */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 900;
-}
-
-footer {
-  background: #111;
-  color: #c5a059;
-  text-align: center;
-  padding: 30px;
-}
-
-/* ================= RESPONSIVO ================= */
-@media (max-width: 600px) {
-  .search-container { display: none; } /* Esconde busca no mobile para caber título */
-  header h1 { font-size: 1.1em; }
-}
-</style>
+    .panel{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background: rgba(18,24,38,.60);
+      backdrop-filter: blur(8px);
+      overflow:hidden;
+    }
+    .panel .hd{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    .panel .hd h2{margin:0;font-size:16px}
+    .panel .bd{padding:14px 16px}
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (min-width: 780px){
+      .grid{grid-template-columns: 1.25fr .75fr}
+      .controls{grid-template-columns: 1.2fr .8fr .8fr}
+    }
+    input, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder{color:rgba(154,164,178,.8)}
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 900px){
+      .cards{grid-template-columns: 1fr 1fr}
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px 14px;
+      background: rgba(0,0,0,.18);
+      display:flex; flex-direction:column; gap:10px;
+      min-height: 170px;
+    }
+    .topline{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .name{
+      font-weight:800; letter-spacing:.2px; font-size:15px; margin:0;
+    }
+    .meta{
+      display:flex; flex-wrap:wrap; gap:8px;
+      color:var(--muted); font-size:12px;
+    }
+    .tag{
+      padding:5px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .desc{margin:0; color:#cdd6e1; font-size:13px; line-height:1.35}
+    .links{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
+    .link{
+      font-size:13px; text-decoration:none; font-weight:800;
+      padding:9px 10px; border-radius:12px; border:1px solid var(--border);
+      background: rgba(122,162,255,.10);
+    }
+    .link.alt{background: rgba(103,232,167,.10)}
+    ul{margin:10px 0 0 18px; color:#cdd6e1; line-height:1.55}
+    .small{color:var(--muted); font-size:12px; margin:0}
+    footer{margin-top:18px; color:var(--muted); font-size:12px}
+    .note{
+      padding:10px 12px; border:1px dashed rgba(255,255,255,.16);
+      border-radius:14px; background: rgba(0,0,0,.14); color:var(--muted);
+      font-size:12px; line-height:1.4;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>Catálogo de Gramas (Sintéticas) — Modelos & Serviços</h1>
+        <p>
+          Catálogo simples para você apresentar modelos, características e links de referência.
+          Use a busca e filtros para achar rapidamente a grama ideal (altura, categoria e uso).
+        </p>
+      </div>
+      <div class="cta">
+        <div class="pill">WhatsApp: <strong>(41) 99999-9999</strong></div>
+        <a class="btn" href="https://wa.me/5541999999999" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
+      </div>
+    </header>
 
-<header>
-  <h1>Fábrica de Estofados</h1>
-  
-  <div class="search-container">
-    <input type="text" placeholder="Buscar sofá, poltrona...">
+    <div class="grid">
+      <!-- CATÁLOGO -->
+      <section class="panel">
+        <div class="hd">
+          <h2>Modelos de grama</h2>
+          <span class="pill"><span>Itens:</span> <strong id="count">0</strong></span>
+        </div>
+        <div class="bd">
+          <div class="controls">
+            <input id="q" type="search" placeholder="Buscar: 20mm, esportiva, colorida, UV, anti-fungo..." />
+            <select id="cat">
+              <option value="">Todas as categorias</option>
+              <option value="Decorativa">Decorativa</option>
+              <option value="Esportiva">Esportiva</option>
+              <option value="Colorida">Colorida</option>
+            </select>
+            <select id="height">
+              <option value="">Todas as alturas</option>
+              <option value="12">12mm</option>
+              <option value="20">20mm</option>
+              <option value="30">30mm</option>
+              <option value="40">40mm</option>
+              <option value="50">50mm</option>
+            </select>
+          </div>
+
+          <div style="height:12px"></div>
+          <div class="cards" id="cards"></div>
+
+          <div style="height:14px"></div>
+          <div class="note">
+            <strong>Obs.:</strong> os links abaixo são referências públicas (páginas de produto).
+            Se você quiser, posso adaptar este HTML para usar <em>suas próprias fotos</em> e <em>seus preços</em>.
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <aside class="panel">
+        <div class="hd">
+          <h2>Exemplos de serviços</h2>
+        </div>
+        <div class="bd">
+          <p class="small">Sugestões para você listar no catálogo e vender junto com a grama:</p>
+          <ul>
+            <li><strong>Instalação completa</strong> (medição, recortes e acabamento)</li>
+            <li><strong>Preparação de base</strong> (nivelamento, compactação e drenagem)</li>
+            <li><strong>Colagem / emendas</strong> (fita + cola, alinhamento de fibras)</li>
+            <li><strong>Aplicação em áreas específicas</strong>: jardim, quintal, piscina, sacada, área pet</li>
+            <li><strong>Projetos</strong>: paisagismo, jardim com pedras, áreas decorativas</li>
+            <li><strong>Manutenção</strong>: limpeza, escovação, remoção de folhas e detritos</li>
+            <li><strong>Reparo</strong>: troca de trecho, correção de emendas e bordas</li>
+          </ul>
+
+          <div style="height:12px"></div>
+          <p class="small">Quer que eu inclua uma seção “Antes e Depois” (galeria) e um formulário de orçamento?</p>
+          <a class="btn" style="width:100%; margin-top:10px; justify-content:center"
+             href="https://wa.me/5541999999999?text=Olá!%20Quero%20um%20orçamento%20de%20grama%20sintética%20e%20instalação."
+             target="_blank" rel="noopener">
+            Falar no WhatsApp agora
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>© <span id="year"></span> — Catálogo demonstrativo. Ajuste os textos, fotos e preços conforme sua necessidade.</div>
+    </footer>
   </div>
 
-  <div class="menu-icon" onclick="openNav()">☰</div>
-</header>
+  <script>
+    const models = [
+      {
+        name: "Grama Sintética Decorativa 12mm (m²)",
+        category: "Decorativa",
+        height: 12,
+        use: "Jardim de inverno, paredes internas, varandas, decoração",
+        features: ["Proteção UV", "Anti-fungo", "Baixa manutenção"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-12mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
+      },
+      {
+        name: "Grama Sintética Decorativa 20mm (m²)",
+        category: "Decorativa",
+        height: 20,
+        use: "Áreas internas/externas, lazer, varanda, área pet",
+        features: ["Proteção UV", "Anti-fungo", "Drenagem"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-20mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
+      },
+      {
+        name: "Grama Sintética Decorativa 30mm (m²)",
+        category: "Decorativa",
+        height: 30,
+        use: "Jardins externos, quintal, piscina, áreas de circulação",
+        features: ["Proteção UV", "Anti-fungo", "Conforto"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-30mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
+      },
+      {
+        name: "Grama Sintética Decorativa 40mm (m²)",
+        category: "Decorativa",
+        height: 40,
+        use: "Visual mais alto/natural, áreas externas, lazer",
+        features: ["Proteção UV", "Anti-fungo", "Visual cheio"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-artificial-40mm-por-metro-quadrado-com-protecao-uv-e-anti-fungo/"
+      },
+      {
+        name: "Grama Sintética Esportiva 50mm 6000 Dtex (m²)",
+        category: "Esportiva",
+        height: 50,
+        use: "Campos/quadras, alta resistência e tráfego intenso",
+        features: ["Resistente", "Alta durabilidade"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-esportiva-50mm-por-metro-quadrado-6000-dtex-fibrilada/"
+      },
+      {
+        name: "Grama Sintética Esportiva 50mm 8000 Dtex (m²)",
+        category: "Esportiva",
+        height: 50,
+        use: "Campos/quadras, performance e resistência superior",
+        features: ["Resistente", "Alta durabilidade"],
+        url: "https://supergramas.com.br/produtos/grama-sintetica-esportiva-50mm-por-metro-quadrado-8000-dtex-fibrilada/"
+      },
+      {
+        name: "Grama Sintética Colorida 20mm Amarela",
+        category: "Colorida",
+        height: 20,
+        use: "Eventos, playground, decoração criativa",
+        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
+        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-amarela/"
+      },
+      {
+        name: "Grama Sintética Colorida 20mm Azul",
+        category: "Colorida",
+        height: 20,
+        use: "Eventos, áreas temáticas, decoração",
+        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
+        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-azul/"
+      },
+      {
+        name: "Grama Sintética Colorida 20mm Branca",
+        category: "Colorida",
+        height: 20,
+        use: "Eventos, vitrines, projetos especiais",
+        features: ["Proteção UV", "Anti-fungo", "Destaque visual"],
+        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-branca/"
+      },
+      {
+        name: "Grama Sintética Colorida 20mm Vermelha",
+        category: "Colorida",
+        height: 20,
+        use: "Eventos, decoração, áreas temáticas",
+        features: ["Proteção UV", "Anti-fungo", "Cor vibrante"],
+        url: "https://supergramas.com.br/grama-colorida/grama-sintetica-20mm-vermelho/"
+      }
+    ];
 
-<div id="myNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#">Início</a>
-  <a href="#">Produtos</a>
-  <a href="#">Sobre</a>
-  <a href="#">Contato</a>
-</div>
+    const elCards = document.getElementById("cards");
+    const elQ = document.getElementById("q");
+    const elCat = document.getElementById("cat");
+    const elHeight = document.getElementById("height");
+    const elCount = document.getElementById("count");
 
-<div class="spacer"></div>
+    function cardTemplate(m){
+      const tags = [
+        `<span class="tag">${m.category}</span>`,
+        `<span class="tag">${m.height}mm</span>`,
+        ...m.features.slice(0,3).map(f => `<span class="tag">${f}</span>`)
+      ].join("");
 
-<div class="slider">
-  <div class="slides">
-    <div class="slide slide1"></div>
-    <div class="slide slide2"></div>
-    <div class="slide slide3"></div>
-    <div class="slide slide4"></div>
-  </div>
-</div>
+      return `
+        <article class="card" data-cat="${m.category}" data-height="${m.height}" data-text="${(m.name+' '+m.use+' '+m.features.join(' ')).toLowerCase()}">
+          <div class="topline">
+            <p class="name">${m.name}</p>
+            <span class="tag" style="border-color:rgba(103,232,167,.35); color:#bff7de">Disponível</span>
+          </div>
+          <div class="meta">${tags}</div>
+          <p class="desc"><strong>Indicação:</strong> ${m.use}</p>
+          <div class="links">
+            <a class="link" href="${m.url}" target="_blank" rel="noopener">Ver link do modelo</a>
+            <a class="link alt" href="https://wa.me/5541999999999?text=Olá!%20Quero%20orçamento%20da%20${encodeURIComponent(m.name)}%20(${m.height}mm)%20e%20instalação."
+               target="_blank" rel="noopener">Orçar no WhatsApp</a>
+          </div>
+        </article>
+      `;
+    }
 
-<section>
-  <h2>Sobre Nossa Fábrica</h2>
-  <p>Qualidade artesanal e design moderno para transformar seu lar.</p>
-</section>
+    function render(){
+      elCards.innerHTML = models.map(cardTemplate).join("");
+      applyFilters();
+    }
 
-<section>
-  <div class="produtos">
-    <div class="produto">
-      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7">
-      <h3>Sofás</h3>
-      <p>Conforto absoluto para sua sala.</p>
-    </div>
-    <div class="produto">
-      <img src="https://images.unsplash.com/photo-1582582621959-48d27397dc69">
-      <h3>Poltronas</h3>
-      <p>O toque de luxo que faltava.</p>
-    </div>
-    <div class="produto">
-      <img src="https://images.unsplash.com/photo-1598300053651-28b35f36c7ec">
-      <h3>Sob Medida</h3>
-      <p>Projetos exclusivos para seu ambiente.</p>
-    </div>
-  </div>
-</section>
+    function applyFilters(){
+      const q = (elQ.value || "").trim().toLowerCase();
+      const cat = elCat.value;
+      const h = elHeight.value;
 
-<a class="whatsapp" href="#" target="_blank">WhatsApp</a>
+      const items = Array.from(elCards.querySelectorAll(".card"));
+      let shown = 0;
 
-<footer>
-  © 2026 – Fábrica de Estofados Premium
-</footer>
+      items.forEach(card => {
+        const okQ = !q || card.dataset.text.includes(q);
+        const okC = !cat || card.dataset.cat === cat;
+        const okH = !h || card.dataset.height === h;
+        const ok = okQ && okC && okH;
+        card.style.display = ok ? "" : "none";
+        if(ok) shown++;
+      });
 
-<script>
-function openNav() {
-  document.getElementById("myNav").style.width = "100%";
-}
+      elCount.textContent = shown;
+    }
 
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}
-</script>
+    elQ.addEventListener("input", applyFilters);
+    elCat.addEventListener("change", applyFilters);
+    elHeight.addEventListener("change", applyFilters);
 
+    document.getElementById("year").textContent = new Date().getFullYear();
+    render();
+  </script>
 </body>
 </html>
+
